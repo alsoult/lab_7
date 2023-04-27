@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise_5</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #square_1,
+      #square_2,
+      #square_3 {
+        width: 300px;
+        height: 300px;
+        z-index: auto;
+      }
+      #square_1 {
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      #square_2 {
+        background-color: yellow;
+        position: absolute;
+        top: 40px;
+        left: 40px;
+      }
+      #square_3 {
+        background-color: blue;
+        position: absolute;
+        top: 80px;
+        left: 80px;
+      }
+      .container {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="square_1" class="square"></div>
+      <div id="square_2" class="square"></div>
+      <div id="square_3" class="square"></div>
+    </div>
+    <script>
+      const squares = document.querySelectorAll(".square");
+      let clickedSquareIndex;
+
+      squares.forEach((square, index) => {
+        square.classList.add(index);
+      });
+
+      squares.forEach((square) => {
+        square.addEventListener("click", function (event) {
+          clickedSquareIndex = event.currentTarget.className.slice(
+            event.currentTarget.className.length - 1
+          );
+          square.style.zIndex = "1";
+
+          squares.forEach((square, index) => {
+            if (index !== parseInt(clickedSquareIndex)) {
+              square.style.zIndex = "0";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

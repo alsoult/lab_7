@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise_2</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="index1.html" target="_blank">index1.html</a></li>
+      <li>
+        <a href="https://www.google.com/" target="_blank"
+          >https://www.google.com/</a
+        >
+      </li>
+      <li><a href="https://ya.ru/" target="_blank">https://ya.ru/</a></li>
+      <li><a href="index2.html" target="_blank">index2.html</a></li>
+      <li>
+        <a href="https://github.com/" target="_blank">https://github.com/</a>
+      </li>
+    </ul>
+    <script>
+      const links = document.querySelectorAll("a");
+      links.forEach((link) => {
+        if (
+          link.innerText.startsWith("http://") ||
+          link.innerText.startsWith("https://")
+        ) {
+          link.style.textDecorationStyle = "dashed";
+          link.style.color = "black";
+        }
+      });
+    </script>
+  </body>
+</html>

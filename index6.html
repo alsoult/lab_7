@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise_6</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .selectedItem {
+        color: orange;
+      }
+      .list {
+        list-style-type: none;
+      }
+      .container {
+        margin: 30px;
+        padding: 30px;
+        font-family: "Ubuntu", sans-serif;
+        color: rgba(18, 18, 18, 95%);
+        font-size: 21px;
+      }
+      li {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="list">
+        <li id="0">Джон Р. Р. Толкин "Властелин колец"</li>
+        <li id="1">Джоан Роулинг "Гарри Поттер и Кубок огня"</li>
+        <li id="2">Фрэнсис Скотт Фицджеральд "Великий Гэтсби"</li>
+        <li id="3">Стивен Кинг "Зелёная миля"</li>
+        <li id="4">Томас Харрис "Молчание ягнят"</li>
+      </ul>
+    </div>
+    <script>
+      let items = document.querySelectorAll("li"),
+        indexOfItem;
+
+      items.forEach((item) => {
+        item.addEventListener("click", function (event) {
+          if (event.ctrlKey) {
+            if (this.classList.contains("selectedItem")) {
+              this.classList.remove("selectedItem");
+              return;
+            } else {
+              this.classList.add("selectedItem");
+              return;
+            }
+          }
+          if (event.shiftKey) {
+            if (indexOfItem < this.id) {
+              for (let i = indexOfItem; i <= this.id; i++) {
+                items[i].classList.add("selectedItem");
+              }
+            } else {
+              for (let i = indexOfItem; i >= this.id; i--) {
+                items[i].classList.add("selectedItem");
+              }
+            }
+            return;
+          }
+
+          document.querySelectorAll(".selectedItem").forEach((li) => {
+            li.classList.remove("selectedItem");
+          });
+          if (!this.classList.contains("selectedItem")) {
+            this.classList.add("selectedItem");
+          }
+
+          if (this.classList.contains("selectedItem")) {
+            indexOfItem = this.id;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

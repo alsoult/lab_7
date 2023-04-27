@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise_4</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #container {
+      margin: 50px;
+      padding: 30px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 15px;
+    }
+    #setBackgroundColor {
+      padding: 10px;
+      width: 250px;
+      height: 50px;
+      color: rgba(18, 18, 18, 95%);
+      font-family: "Ubuntu", sans-serif;
+      font-size: 21px;
+      font-weight: 500;
+      background-color: rgba(218, 218, 218, 80%);
+      border-radius: 10px;
+      border: 4px solid #d1d1d1;
+      cursor: pointer;
+    }
+    #setBackgroundColor:hover {
+      background-color: rgba(204, 204, 204, 80%);
+      border: 4px solid #c6c6c6;
+    }
+    #backgroundColor {
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: transparent;
+      width: 50px;
+      height: 50px;
+      border: none;
+      cursor: pointer;
+    }
+    #backgroundColor::-webkit-color-swatch {
+      border-radius: 50%;
+      border: 4px solid #d1d1d1;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <input type="color" id="backgroundColor" />
+      <input type="button" id="setBackgroundColor" value="Изменить цвет фона" />
+    </div>
+    <script>
+      const button = document.querySelector("#setBackgroundColor");
+      const color = document.querySelector("#backgroundColor");
+
+      button.addEventListener("click", function () {
+        document.body.style.backgroundColor = color.value;
+      });
+    </script>
+  </body>
+</html>

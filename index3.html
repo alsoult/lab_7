@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise_3</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+      ul {
+        list-style-type: none;
+      }
+      .list span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        font-size: 21px;
+        font-family: "Ubuntu", sans-serif;
+        color: rgba(18, 18, 18, 95%);
+      }
+      .showItem::before {
+        content: url(images/bottom_arrow.svg);
+      }
+      .hideItem::before {
+        content: url(images/right_arrow.svg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="list">
+        <li>
+          Text
+          <ul>
+            <li>Text</li>
+            <li>
+              Text
+              <ul>
+                <li>Text</li>
+                <li>Text</li>
+                <li>Text</li>
+              </ul>
+            </li>
+            <li>Text</li>
+          </ul>
+        </li>
+        <li>Text</li>
+        <li>
+          Text
+          <ul>
+            <li>Text</li>
+            <li>
+              Text
+              <ul>
+                <li>Text</li>
+                <li>Text</li>
+                <li>Text</li>
+              </ul>
+            </li>
+            <li>Text</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script>
+      let list = document.querySelector(".list");
+      for (const li of list.querySelectorAll("li")) {
+        let span = document.createElement("span");
+        span.classList.add("showItem");
+        li.prepend(span);
+        span.append(span.nextSibling);
+
+        span.addEventListener("mouseover", function (event) {
+          event.target.style.fontWeight = "bold";
+        });
+        span.addEventListener("mouseout", function (event) {
+          event.target.style.fontWeight = "";
+        });
+      }
+
+      list.onclick = function (event) {
+        if (event.target.tagName !== "SPAN") {
+          return;
+        }
+
+        let childList = event.target.parentNode.querySelector("ul");
+
+        if (!childList) {
+          return;
+        }
+
+        childList.hidden = !childList.hidden;
+
+        if (childList.hidden) {
+          event.target.classList.add("hideItem");
+          event.target.classList.remove("showItem");
+        } else {
+          event.target.classList.add("showItem");
+          event.target.classList.remove("hideItem");
+        }
+      };
+    </script>
+  </body>
+</html>

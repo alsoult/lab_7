@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise_1</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      input {
+        margin: 10px;
+        padding: 10px;
+        font-family: "Ubuntu", sans-serif;
+        border-radius: 10px;
+        color: rgba(18, 18, 18, 95%);
+        background-color: rgba(218, 218, 218, 80%);
+        border: 3px solid #d1d1d1;
+        font-size: 21px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      #getInfoBtn,
+      #setInfoBtn {
+        margin-top: 20px;
+      }
+      #getInfoBtn {
+        margin-left: 25px;
+      }
+      input:hover {
+        background-color: rgba(204, 204, 204, 80%);
+        border: 3px solid #c6c6c6;
+      }
+      #content {
+        margin: 10px;
+        padding: 15px;
+        font-family: "Ubuntu", sans-serif;
+        width: fit-content;
+        color: rgba(18, 18, 18, 95%);
+      }
+      table {
+        border-collapse: collapse;
+        background-color: rgba(218, 218, 218, 80%);
+        font-size: 21px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+      th {
+        padding: 15px;
+        border-bottom: 5px solid #c6c6c6;
+      }
+      th:first-child {
+        border-right: 5px solid #c6c6c6;
+      }
+      td {
+        padding: 5px 15px 5px 15px;
+      }
+      td:first-child {
+        border-right: 5px solid #c6c6c6;
+      }
+      td:last-child {
+        text-align: center;
+      }
+      tr:last-child > td {
+        padding-bottom: 15px;
+      }
+      tr:first-child + tr > td {
+        padding-top: 15px;
+      }
+      tr:first-child ~ tr > td {
+        border-bottom: 3px solid #c6c6c698;
+      }
+      tr:last-child > td {
+        border-bottom: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      id="getInfoBtn"
+      value="Получить значения свойств объекта"
+      onclick="getInfo()"
+      type="button"
+    />
+    <input
+      id="setInfoBtn"
+      value="Установить значения свойств объекта"
+      onclick="setInfo()"
+      type="button"
+    />
+    <div id="content"></div>
+    <script>
+      document.getElementById("content").hidden = true;
+      let arrOfObj = [],
+        emptyLine,
+        negNum,
+        notNum,
+        countOfObj,
+        cancel;
+
+      class ComputerMouse {
+        constructor(
+          connectionInterface,
+          purpose,
+          sensorType,
+          sensorModel,
+          maxDPI
+        ) {
+          this.connectionInterface = connectionInterface;
+          this.purpose = purpose;
+          this.sensorType = sensorType;
+          this.sensorModel = sensorModel;
+          this.maxDPI = maxDPI;
+        }
+        getConnectionInterface() {
+          return this.connectionInterface;
+        }
+        getPurpose() {
+          return this.purpose;
+        }
+        getSensorType() {
+          return this.sensorType;
+        }
+        getSensorModel() {
+          return this.sensorModel;
+        }
+        getMaxDPI() {
+          return this.maxDPI;
+        }
+        setConnectionInterface(connectionInterface) {
+          this.connectionInterface = connectionInterface;
+        }
+        setPurpose(purpose) {
+          this.purpose = purpose;
+        }
+        setSensorType(sensorType) {
+          this.sensorType = sensorType;
+        }
+        setSensorModel(sensorModel) {
+          this.sensorModel = sensorModel;
+        }
+        setMaxDPI(maxDPI) {
+          this.maxDPI = maxDPI;
+        }
+        getInfo(objectNum) {
+          return (
+            "<table><tr><th>Свойство объекта №" +
+            objectNum +
+            "</th><th>Значение</th></tr><tr><td>Интерфейс подключения</td><td>" +
+            this.connectionInterface +
+            "</td></tr><tr><td>Назначение</td><td>" +
+            this.purpose +
+            "</td></tr><tr><td>Тип сенсора</td><td>" +
+            this.sensorType +
+            "</td></tr><tr><td>Модель сенсора</td><td>" +
+            this.sensorModel +
+            "</td></tr><tr><td>Максимальное разрешение сенсора</td><td>" +
+            this.maxDPI +
+            "</td></tr>"
+          );
+        }
+      }
+
+      class ComputerMouseOnTheMarket extends ComputerMouse {
+        constructor(
+          connectionInterface,
+          purpose,
+          sensorType,
+          sensorModel,
+          maxDPI,
+          dateOfMarketLaunch,
+          cost
+        ) {
+          super(connectionInterface, purpose, sensorType, sensorModel, maxDPI);
+          this.dateOfMarketLaunch = dateOfMarketLaunch;
+          this.cost = cost;
+        }
+        getConnectionInterface() {
+          return super.getConnectionInterface();
+        }
+        getPurpose() {
+          return super.getPurpose();
+        }
+        getSensorType() {
+          return super.getSensorType();
+        }
+        getSensorModel() {
+          return super.getSensorModel();
+        }
+        getMaxDPI() {
+          return super.getMaxDPI();
+        }
+        getDateOfMarketLaunch() {
+          return this.dateOfMarketLaunch;
+        }
+        getCost() {
+          return this.cost;
+        }
+        setConnectionInterface(connectionInterface) {
+          super.setConnectionInterface(connectionInterface);
+        }
+        setPurpose(purpose) {
+          super.setPurpose(purpose);
+        }
+        setSensorType(sensorType) {
+          super.setSensorType(sensorType);
+        }
+        setSensorModel(sensorModel) {
+          super.setSensorModel(sensorModel);
+        }
+        setMaxDPI(maxDPI) {
+          super.setMaxDPI(maxDPI);
+        }
+        setDateOfMarketLaunch(dateOfMarketLaunch) {
+          this.dateOfMarketLaunch = dateOfMarketLaunch;
+        }
+        setCost(cost) {
+          this.cost = cost;
+        }
+        getInfo(objectNum) {
+          document.getElementById("content").innerHTML +=
+            super.getInfo(objectNum) +
+            "<tr><td>Дата выхода на рынок</td><td>" +
+            this.dateOfMarketLaunch +
+            "</td></tr><tr><td>Стоимость</td><td>" +
+            this.cost +
+            "</td></tr></table>";
+        }
+      }
+
+      do {
+        emptyLine = false;
+        negNum = false;
+        notNum = false;
+        countOfObj = prompt("Введите количество объектов:", 0);
+        try {
+          if (countOfObj == "") {
+            emptyLine = true;
+            throw new Error(
+              "Поле ввода не содержит значения. Необходимо ввести число."
+            );
+          }
+          if (countOfObj == null || countOfObj == "0") {
+            break;
+          }
+          if (parseInt(countOfObj) < 0) {
+            negNum = true;
+            throw new Error(
+              "Количество не может быть отрицательным значением. Введите неотрицательное число."
+            );
+          }
+          if (isNaN(countOfObj)) {
+            notNum = true;
+            throw new Error(
+              "Введено нечисловое значение. Необходимо ввести число."
+            );
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      } while (emptyLine || negNum || notNum);
+
+      if (countOfObj != null && countOfObj != "0") {
+        countOfObj = parseInt(countOfObj);
+        cancel = false;
+        let connectionInterface,
+          purpose,
+          sensorType,
+          sensorModel,
+          maxDPI,
+          dateOfMarketLaunch,
+          cost;
+        for (let i = 0; i < countOfObj; i++) {
+          alert(`Введите свойства ${i + 1}-го объекта.`);
+          connectionInterface = prompt("Интерфейс подключения:", "");
+          if (connectionInterface == null) {
+            cancel = true;
+            break;
+          }
+          purpose = prompt("Назначение:", "");
+          if (purpose == null) {
+            cancel = true;
+            break;
+          }
+          sensorType = prompt("Тип сенсора:", "");
+          if (sensorType == null) {
+            cancel = true;
+            break;
+          }
+          sensorModel = prompt("Модель сенсора:", "");
+          if (sensorModel == null) {
+            cancel = true;
+            break;
+          }
+          maxDPI = prompt("Максимальное разрешение сенсора:", "");
+          if (maxDPI == null) {
+            cancel = true;
+            break;
+          }
+          dateOfMarketLaunch = prompt("Дата выхода на рынок:", "");
+          if (dateOfMarketLaunch == null) {
+            cancel = true;
+            break;
+          }
+          cost = prompt("Стоимость:", "");
+          if (cost == null) {
+            cancel = true;
+            break;
+          }
+          arrOfObj[i] = new ComputerMouseOnTheMarket(
+            connectionInterface,
+            purpose,
+            sensorType,
+            sensorModel,
+            maxDPI,
+            dateOfMarketLaunch,
+            cost
+          );
+        }
+
+        if (!cancel) {
+          document.getElementById("getInfoBtn").onclick = function () {
+            document.getElementById("content").hidden = false;
+            let numOfObj, outOfRage;
+            do {
+              emptyLine = false;
+              outOfRage = false;
+              notNum = false;
+              numOfObj = prompt(
+                "Введите номер объекта, информацию о котором Вы хотите узнать:",
+                1
+              );
+              try {
+                if (numOfObj == "") {
+                  emptyLine = true;
+                  throw new Error(
+                    "Поле ввода не содержит значения. Необходимо ввести число."
+                  );
+                }
+                if (parseInt(numOfObj) < 1 || parseInt(numOfObj) > countOfObj) {
+                  outOfRage = true;
+                  throw new Error(
+                    "Номер объекта вне нужного диапазона. Необходимо ввести число от 1 до " +
+                      countOfObj +
+                      "."
+                  );
+                }
+                if (isNaN(numOfObj)) {
+                  notNum = true;
+                  throw new Error(
+                    "Введено нечисловое значение. Необходимо ввести число."
+                  );
+                }
+              } catch (error) {
+                alert(error.message);
+              }
+            } while (emptyLine || outOfRage || notNum);
+
+            if (numOfObj != null) {
+              numOfObj = parseInt(numOfObj);
+              let selectPropertyOfObj;
+              do {
+                emptyLine = false;
+                outOfRage = false;
+                notNum = false;
+                selectPropertyOfObj = prompt(
+                  `Введите номер, соответствующий свойству объекта:\n1) Интерфейс подключения\n2) Назначение\n3) Тип сенсора\n4) Модель сенсор\n5) Максимальное разрешение сенсора\n6) Дата выхода на рынок\n7) Стоимость\n8) Все свойства`,
+                  1
+                );
+                try {
+                  if (selectPropertyOfObj == "") {
+                    emptyLine = true;
+                    throw new Error(
+                      "Поле ввода не содержит значения. Необходимо ввести число."
+                    );
+                  }
+                  if (
+                    parseInt(selectPropertyOfObj) < 1 ||
+                    parseInt(selectPropertyOfObj) > 8
+                  ) {
+                    outOfRage = true;
+                    throw new Error(
+                      "Номер свойства вне нужного диапазона. Необходимо ввести число от 1 до 8."
+                    );
+                  }
+                  if (isNaN(selectPropertyOfObj)) {
+                    notNum = true;
+                    throw new Error(
+                      "Введено нечисловое значение. Необходимо ввести число."
+                    );
+                  }
+                } catch (error) {
+                  alert(error.message);
+                }
+              } while (emptyLine || outOfRage || notNum);
+
+              if (selectPropertyOfObj != null) {
+                selectPropertyOfObj = parseInt(selectPropertyOfObj);
+                switch (selectPropertyOfObj) {
+                  case 1:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        document.getElementById("content").innerHTML +=
+                          "<table><tr><th>Свойство объекта №" +
+                          (i + 1) +
+                          "</th><th>Значение</th></tr><tr><td>Интерфейс подключения</td><td>" +
+                          arrOfObj[i].getConnectionInterface() +
+                          "</td></tr></table>";
+                      }
+                    }
+                    break;
+                  case 2:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        document.getElementById("content").innerHTML +=
+                          "<table><tr><th>Свойство объекта №" +
+                          (i + 1) +
+                          "</th><th>Значение</th></tr><tr><td>Назначение</td><td>" +
+                          arrOfObj[i].getPurpose() +
+                          "</td></tr></table>";
+                      }
+                    }
+                    break;
+                  case 3:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        document.getElementById("content").innerHTML +=
+                          "<table><tr><th>Свойство объекта №" +
+                          (i + 1) +
+                          "</th><th>Значение</th></tr><tr><td>Тип сенсора</td><td>" +
+                          arrOfObj[i].getSensorType() +
+                          "</td></tr></table>";
+                      }
+                    }
+                    break;
+                  case 4:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        document.getElementById("content").innerHTML +=
+                          "<table><tr><th>Свойство объекта №" +
+                          (i + 1) +
+                          "</th><th>Значение</th></tr><tr><td>Модель сенсора</td><td>" +
+                          arrOfObj[i].getSensorModel() +
+                          "</td></tr></table>";
+                      }
+                    }
+                    break;
+                  case 5:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        document.getElementById("content").innerHTML +=
+                          "<table><tr><th>Свойство объекта №" +
+                          (i + 1) +
+                          "</th><th>Значение</th></tr><tr><td>Максимальное разрешение сенсора</td><td>" +
+                          arrOfObj[i].getMaxDPI() +
+                          "</td></tr></table>";
+                      }
+                    }
+                    break;
+                  case 6:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        document.getElementById("content").innerHTML +=
+                          "<table><tr><th>Свойство объекта №" +
+                          (i + 1) +
+                          "</th><th>Значение</th></tr><tr><td>Дата выхода на рынок</td><td>" +
+                          arrOfObj[i].getDateOfMarketLaunch() +
+                          "</td></tr></table>";
+                      }
+                    }
+                    break;
+                  case 7:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        document.getElementById("content").innerHTML +=
+                          "<table><tr><th>Свойство объекта №" +
+                          (i + 1) +
+                          "</th><th>Значение</th></tr><tr><td>Стоимость</td><td>" +
+                          arrOfObj[i].getCost() +
+                          "</td></tr></table>";
+                      }
+                    }
+                    break;
+                  case 8:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        arrOfObj[i].getInfo(numOfObj);
+                      }
+                    }
+                    break;
+                  default:
+                    break;
+                }
+              }
+            }
+          };
+          document.getElementById("setInfoBtn").onclick = function () {
+            document.getElementById("content").hidden = false;
+            let numOfObj, outOfRage;
+            do {
+              emptyLine = false;
+              outOfRage = false;
+              notNum = false;
+              numOfObj = prompt(
+                "Введите номер объекта, информацию которого Вы хотите изменить:",
+                1
+              );
+              try {
+                if (numOfObj == "") {
+                  emptyLine = true;
+                  throw new Error(
+                    "Поле ввода не содержит значения. Необходимо ввести число."
+                  );
+                }
+                if (parseInt(numOfObj) < 1 || parseInt(numOfObj) > countOfObj) {
+                  outOfRage = true;
+                  throw new Error(
+                    "Номер объекта вне нужного диапазона. Необходимо ввести число от 1 до " +
+                      countOfObj +
+                      "."
+                  );
+                }
+                if (isNaN(numOfObj)) {
+                  notNum = true;
+                  throw new Error(
+                    "Введено нечисловое значение. Необходимо ввести число."
+                  );
+                }
+              } catch (error) {
+                alert(error.message);
+              }
+            } while (emptyLine || outOfRage || notNum);
+
+            if (numOfObj != null) {
+              numOfObj = parseInt(numOfObj);
+              let selectPropertyOfObj;
+              do {
+                emptyLine = false;
+                outOfRage = false;
+                notNum = false;
+                selectPropertyOfObj = prompt(
+                  `Введите номер, соответствующий свойству объекта:\n1) Интерфейс подключения\n2) Назначение\n3) Тип сенсора\n4) Модель сенсор\n5) Максимальное разрешение сенсора\n6) Дата выхода на рынок\n7) Стоимость\n8) Все свойства`,
+                  1
+                );
+                try {
+                  if (selectPropertyOfObj == "") {
+                    emptyLine = true;
+                    throw new Error(
+                      "Поле ввода не содержит значения. Необходимо ввести число."
+                    );
+                  }
+                  if (
+                    parseInt(selectPropertyOfObj) < 1 ||
+                    parseInt(selectPropertyOfObj) > 8
+                  ) {
+                    outOfRage = true;
+                    throw new Error(
+                      "Номер свойства вне нужного диапазона. Необходимо ввести число от 1 до 8."
+                    );
+                  }
+                  if (isNaN(selectPropertyOfObj)) {
+                    notNum = true;
+                    throw new Error(
+                      "Введено нечисловое значение. Необходимо ввести число."
+                    );
+                  }
+                } catch (error) {
+                  alert(error.message);
+                }
+              } while (emptyLine || outOfRage || notNum);
+
+              if (selectPropertyOfObj != null) {
+                let newValue;
+                selectPropertyOfObj = parseInt(selectPropertyOfObj);
+                switch (selectPropertyOfObj) {
+                  case 1:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        newValue = prompt("Введите новое значение:", "");
+                        if (newValue != null) {
+                          arrOfObj[i].setConnectionInterface(newValue);
+                          alert("Изменено!");
+                        }
+                      }
+                    }
+                    break;
+                  case 2:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        newValue = prompt("Введите новое значение:", "");
+                        if (newValue != null) {
+                          arrOfObj[i].setPurpose(newValue);
+                          alert("Изменено!");
+                        }
+                      }
+                    }
+                    break;
+                  case 3:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        newValue = prompt("Введите новое значение:", "");
+                        if (newValue != null) {
+                          arrOfObj[i].setSensorType(newValue);
+                          alert("Изменено!");
+                        }
+                      }
+                    }
+                    break;
+                  case 4:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        newValue = prompt("Введите новое значение:", "");
+                        if (newValue != null) {
+                          arrOfObj[i].setSensorModel(newValue);
+                          alert("Изменено!");
+                        }
+                      }
+                    }
+                    break;
+                  case 5:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        newValue = prompt("Введите новое значение:", "");
+                        if (newValue != null) {
+                          arrOfObj[i].setMaxDPI(newValue);
+                          alert("Изменено!");
+                        }
+                      }
+                    }
+                    break;
+                  case 6:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        newValue = prompt("Введите новое значение:", "");
+                        if (newValue != null) {
+                          arrOfObj[i].setDateOfMarketLaunch(newValue);
+                          alert("Изменено!");
+                        }
+                      }
+                    }
+                    break;
+                  case 7:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        newValue = prompt("Введите новое значение:", "");
+                        if (newValue != null) {
+                          arrOfObj[i].setCost(newValue);
+                          alert("Изменено!");
+                        }
+                      }
+                    }
+                    break;
+                  case 8:
+                    for (let i = 0; i < countOfObj; i++) {
+                      if (i == numOfObj - 1) {
+                        newValue = prompt(
+                          "Введите новое значение свойства 'Интерфейс подключения':",
+                          ""
+                        );
+                        if (newValue != null) {
+                          arrOfObj[i].setConnectionInterface(newValue);
+                          alert("Изменено!");
+                        }
+                        newValue = prompt(
+                          "Введите новое значение свойства 'Назначение':",
+                          ""
+                        );
+                        if (newValue != null) {
+                          arrOfObj[i].setPurpose(newValue);
+                          alert("Изменено!");
+                        }
+                        newValue = prompt(
+                          "Введите новое значение свойства 'Тип сенсора':",
+                          ""
+                        );
+                        if (newValue != null) {
+                          arrOfObj[i].setSensorType(newValue);
+                          alert("Изменено!");
+                        }
+                        newValue = prompt(
+                          "Введите новое значение свойства 'Модель сенсора':",
+                          ""
+                        );
+                        if (newValue != null) {
+                          arrOfObj[i].setSensorModel(newValue);
+                          alert("Изменено!");
+                        }
+                        newValue = prompt(
+                          "Введите новое значение свойства 'Максимальное разрешение сенсора':",
+                          ""
+                        );
+                        if (newValue != null) {
+                          arrOfObj[i].setMaxDPI(newValue);
+                          alert("Изменено!");
+                        }
+                        newValue = prompt(
+                          "Введите новое значение свойства 'Дата выхода на рынок':",
+                          ""
+                        );
+                        if (newValue != null) {
+                          arrOfObj[i].setDateOfMarketLaunch(newValue);
+                          alert("Изменено!");
+                        }
+                        newValue = prompt(
+                          "Введите новое значение свойства 'Стоимость':",
+                          ""
+                        );
+                        if (newValue != null) {
+                          arrOfObj[i].setCost(newValue);
+                          alert("Изменено!");
+                        }
+                      }
+                    }
+                    break;
+                  default:
+                    break;
+                }
+              }
+            }
+          };
+        } else {
+          document.querySelector("#getInfoBtn").remove();
+          document.querySelector("#setInfoBtn").remove();
+          document.querySelector("#content").remove();
+        }
+      } else {
+        document.querySelector("#getInfoBtn").remove();
+        document.querySelector("#setInfoBtn").remove();
+        document.querySelector("#content").remove();
+      }
+    </script>
+  </body>
+</html>
