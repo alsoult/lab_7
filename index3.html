@@ -11,6 +11,7 @@
         list-style-type: none;
       }
       .list span {
+        width: fit-content;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -67,7 +68,6 @@
       let list = document.querySelector(".list");
       for (const li of list.querySelectorAll("li")) {
         let span = document.createElement("span");
-        span.classList.add("showItem");
         li.prepend(span);
         span.append(span.nextSibling);
 
